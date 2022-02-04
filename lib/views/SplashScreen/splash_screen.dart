@@ -27,21 +27,29 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return 
+    GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(50.0),
-            child: Image(
-              width: MediaQuery.of(context).size.width / 2,
-              image: AssetImage(
-                'assets/logo/einnovention.png',
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(),
+              Padding(
+                padding: EdgeInsets.all(50.0),
+                child: Image(
+                  width: MediaQuery.of(context).size.width / 2,
+                  image: AssetImage(
+                    'assets/logo/einnovention.png',
+                  ),
+                ),
               ),
-            ),
+              Image.asset('assets/logo/splash.png'),
+            ],
           ),
         ),
       ),

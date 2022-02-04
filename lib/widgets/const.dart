@@ -1,3 +1,4 @@
+import 'package:analog_clock/analog_clock.dart';
 import 'package:flutter/material.dart';
 
 Map<int, Color> colorMap = {
@@ -71,6 +72,62 @@ Widget processLoading(BuildContext context, String message) {
           ),
         ),
       ],
+    ),
+  );
+}
+
+Widget timer(BuildContext context, String message) {
+  return AlertDialog(
+    backgroundColor: Colors.white,
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.5,
+          height: MediaQuery.of(context).size.width * 0.5,
+          child: AnalogClock(
+            useMilitaryTime: false,
+            showAllNumbers: true,
+            decoration: BoxDecoration(
+                border: Border.all(width: 2.0, color: themeColor),
+                color: Colors.transparent,
+                shape: BoxShape.circle),
+            isLive: true,
+            digitalClockColor: themeColor,
+            hourHandColor: themeColor,
+            minuteHandColor: themeColor,
+            showSecondHand: true,
+            numberColor: Colors.black87,
+            showNumbers: true,
+            textScaleFactor: 1.4,
+            showTicks: true,
+            showDigitalClock: false,
+            datetime: DateTime.now(),
+          ),
+        ),
+        StatefulBuilder(builder: (context, StateSetter setState) {
+          return Text(DateTime.now().toString());
+        })
+      ],
+    ),
+  );
+}
+
+Widget borderedButton(String text, Function onPressed) {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+        primary: Colors.transparent,
+        elevation: 0,
+        side: BorderSide(
+          color: themeColor,
+        ),
+        shadowColor: Colors.transparent,
+        onSurface: Colors.transparent,
+        onPrimary: Colors.transparent),
+    onPressed: onPressed,
+    child: Text(
+      text,
+      style: TextStyle(color: themeColor, fontFamily: 'Montserrat'),
     ),
   );
 }
